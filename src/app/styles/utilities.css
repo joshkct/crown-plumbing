@@ -1,0 +1,5 @@
+/* ---- Focus ring — applies the Phase 5 focus token to all interactive elements */
+.focus-visible-ring:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
