@@ -9,6 +9,7 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import "lenis/dist/lenis.css";
 import { ClosingCta } from "@/components/closing-cta";
+import { CursorRipple } from "@/components/cursor-ripple";
 import { GlobalMotion } from "@/components/global-motion";
 import { MobileContactDock } from "@/components/mobile-contact-dock";
 import { SiteFooter } from "@/components/site-footer";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body>
         <SmoothScroll />
         <GlobalMotion />
+        <CursorRipple />
         <SiteHeader />
         <main>{children}</main>
         <ClosingCta />

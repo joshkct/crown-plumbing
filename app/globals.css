@@ -66,6 +66,52 @@ main {
   transform-origin: left center;
 }
 
+.cursor-ripple {
+  position: fixed;
+  z-index: 110;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 180ms ease;
+  will-change: transform;
+}
+
+.cursor-ripple.is-visible {
+  opacity: 1;
+}
+
+.cursor-ripple__ring,
+.cursor-ripple__wave {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.cursor-ripple__ring {
+  padding: 2px;
+  background: linear-gradient(135deg, #63b6df 5%, #0e3d5d 88%);
+  box-shadow: 0 0 14px rgb(78 154 193 / 20%);
+  transition: transform 360ms cubic-bezier(.22, 1, .36, 1), box-shadow 360ms ease;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.cursor-ripple.is-interactive .cursor-ripple__ring {
+  box-shadow: 0 0 20px rgb(78 154 193 / 32%);
+  transform: scale(1.28);
+}
+
+.cursor-ripple__wave {
+  border: 1px solid rgb(78 154 193 / 68%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -2257,6 +2303,10 @@ details[id] {
     display: none;
   }
 
+  .cursor-ripple {
+    display: none;
+  }
+
   .desktop-nav a::before {
     display: none;
   }
@@ -2265,5 +2315,11 @@ details[id] {
     background-image: linear-gradient(90deg, rgb(5 31 47 / 93%), rgb(5 31 47 / 63%)), url("/images/hero-img.webp");
     background-position: center;
     background-size: cover;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-ripple {
+    display: none;
   }
 }
